@@ -21,10 +21,16 @@ private:
 
 public:
     // Empty constructor
-    Patient() : id(0), name(""), age(0), caseType(GENERAL) {}
+    Patient()
+    {
+        id = 0;
+        name = "";
+        age = 0;
+        caseType = GENERAL;
+    }
 
     // Parameterized constructor
-    Patient(int patientId, string patientName, int patientAge, CaseType patientCaseType)
+    Patient(int patientId, string patientName, int patientAge, CaseType patientCaseType) 
         : id(patientId), name(patientName), age(patientAge), caseType(patientCaseType) {}
 
     // Display patient information
@@ -51,7 +57,7 @@ public:
         default:
             caseTypeStr = "UNKNOWN";
         }
-
+        
         cout << "Patient ID: " << id << endl;
         cout << "Name: " << name << endl;
         cout << "Age: " << age << endl;
