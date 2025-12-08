@@ -1,9 +1,10 @@
 // بسم الله الرحمن الرحيم
 // "وَأَنْ لَيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ"
 // Free Palestine
+
+
 #ifndef PATIENTQUEUE_H
 #define PATIENTQUEUE_H
-
 #include <bits/stdc++.h>
 #include "Patient.h"
 using namespace std;
@@ -178,8 +179,8 @@ public:
         while (!isEmpty())
             dequeue();
     }
-    // PatientQueue(const PatientQueue &) = delete;
-    // PatientQueue &operator=(const PatientQueue &) = delete;
+    PatientQueue(const PatientQueue &) = delete;
+    PatientQueue &operator=(const PatientQueue &) = delete;
 };
 
 #endif

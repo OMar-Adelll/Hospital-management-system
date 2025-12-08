@@ -1,15 +1,16 @@
 #include <iostream>
 #include <queue>
 #include <string>
-#include "patient.h"
+#include "Patient.h"
 #include "PatientQueue.h"
 #include "Doctor.h"
 #include "DoctorList.h"
+
 using namespace std;
 class HospitalSystem
 {
 private:
-    map<CaseType, vector<DoctorList>> doctorsByMajor;
+    map<CaseType, DoctorList *> doctorsByMajor;
     PatientQueue patientQueue;
 
 public:

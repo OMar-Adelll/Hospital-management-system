@@ -1,49 +1,26 @@
-// #ifndef DOCTORQUEUE_H
-// #define DOCTORQUEUE_H
-
-// #include <bits/stdc++.h>
-// #include "Patient.h"
-// #include "Doctor.h"
-// using namespace std;
-
-// class Node
-// {
-// private:
-//     Doctor doctor;
-//     Node *next;
-
-// public:
-//     QueueNode() {}
-//     QueueNode(Doctor &d) : doctor(d), next(NULL) {}
-// };
-
-// class DoctorList
-// {
-// private:
-//     Node *head;
-//     Node *tail;
-//     // add doctor count method to know the size
-//     int size;
-
-//     public:
-
-// }
-
-
-
-#include "ListNode.h"
-// #include "PatientQueue.h"
-
 #ifndef DOCTORLIST_H
 #define DOCTORLIST_H
 
+#include <bits/stdc++.h>
+#include "PatientQueue.h"
+using namespace std;
+
+class ListNode
+{
+public:
+    Doctor doctor;         // Doctor object
+    PatientQueue Patients; // Queue of patients for this doctor
+    ListNode *next;        // pointer to next node
+
+    ListNode(const Doctor &d) : doctor(d), next(nullptr) {}
+};
 
 class DoctorList
 {
 private:
-    ListNode* head;
-    ListNode* tail;
-    int DoctorsCount; //number of doctors
+    ListNode *head;
+    ListNode *tail;
+    int DoctorsCount; // number of doctors
 
 public:
     DoctorList() : head(nullptr), tail(nullptr), DoctorsCount(0) {}
@@ -52,9 +29,9 @@ public:
         clear();
     }
 
-    void addDoctor(const Doctor& doctor)
+    void addDoctor(const Doctor &doctor)
     {
-        ListNode* newNode = new ListNode(doctor);
+        ListNode *newNode = new ListNode(doctor);
         if (head == nullptr)
         {
             head = tail = newNode;
@@ -67,36 +44,39 @@ public:
         DoctorsCount++;
     }
 
-    PatientQueue SearchById( int DoctorId ) // This function returns the queue of the doctor.
+    PatientQueue *SearchById(int DoctorId)
     {
-        ListNode *Start = head ;
-        while ( Start != nullptr )
+        ListNode *Start = head;
+
+        while (Start != nullptr)
         {
-            if ( Start->doctor.getId() == DoctorId )
+            if (Start->doctor.getId() == DoctorId)
             {
-                return Start->Patients ;
+                return &Start->Patients; // return POINTER to the queue
             }
-            Start = Start->next ;
+            Start = Start->next;
         }
-        cout << "Doctor Id not found!\n" ;
-        PatientQueue Null ;
-        return Null ;
-    }Doctor dequeue()// This function deletes a doctor.
+
+        cout << "Doctor Id not found!\n";
+        return nullptr;
+    }
+
+    Doctor dequeue() // This function deletes a doctor.
     {
         if (isEmpty())
         {
             cout << "There is no Doctor " << nl;
-            return Doctor() ;
+            return Doctor();
         }
         else
         {
             if (head == tail)
             {
-                Doctor temp=head->doctor;
+                Doctor temp = head->doctor;
                 delete head;
                 head = tail = nullptr;
                 DoctorsCount--;
-                return temp ;
+                return temp;
             }
             else
             {
@@ -111,25 +91,23 @@ public:
     }
     void display() // This function display doctors queue
     {
-        if (isEmpty()) {
+        if (isEmpty())
+        {
             cout << "There is no Doctor " << nl;
             return;
         }
-        else {
+        else
+        {
             ListNode *curr = head;
-            while ( curr != nullptr ) {
-                cout <<"Doctor ID"<<curr->doctor.getId()<<endl;
-                cout <<"Doctor Name"<<curr->doctor.getName()<<endl;
+            while (curr != nullptr)
+            {
+                cout << "Doctor ID" << curr->doctor.getId() << endl;
+                cout << "Doctor Name" << curr->doctor.getName() << endl;
                 cout << "==================================" << endl;
                 curr = curr->next;
-
             }
         }
-
     }
-
-
-
 
     bool isEmpty() const
     {
@@ -145,15 +123,13 @@ public:
     {
         while (head != nullptr)
         {
-            ListNode* temp = head;
+            ListNode *temp = head;
             head = head->next;
             delete temp;
         }
         tail = nullptr;
         DoctorsCount = 0;
     }
-
-
 };
 
 #endif
