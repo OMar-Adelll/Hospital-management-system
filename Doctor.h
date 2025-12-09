@@ -2,7 +2,7 @@
 // "وَأَنْ لَيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ"
 // Free Palestine
 #ifndef DOCTOR_H
-#define DOCOTOR_H
+#define DOCTOR_H
 
 #include <bits/stdc++.h>
 #include "Person.h"

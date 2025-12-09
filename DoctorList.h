@@ -119,6 +119,35 @@ public:
         return DoctorsCount;
     }
 
+    bool treatPatient(int doctorId)
+    {
+        ListNode *curr = head;
+        while (curr != nullptr)
+        {
+            if (curr->doctor.getId() == doctorId)
+            {
+                if (curr->Patients.isEmpty())
+                {
+                    cout << "Dr. " << curr->doctor.getName() << " has no patients waiting!" << endl;
+                    return false;
+                }
+
+                // 1. Remove patient from this doctor's specific queue
+                Patient p = curr->Patients.dequeue();
+
+                // 2. (Optional) Increment a 'patientsTreated' counter in the Doctor object
+                // curr->doctor.incrementTreatedCount();
+
+                cout << "Dr. " << curr->doctor.getName() << " has successfully treated patient: "
+                     << p.getName() << nl;
+                return true;
+            }
+            curr = curr->next;
+        }
+        cout << "Doctor ID not found!" << nl;
+        return false;
+    }
+
     void clear()
     {
         while (head != nullptr)

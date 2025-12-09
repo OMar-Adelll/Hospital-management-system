@@ -5,6 +5,8 @@
 #include "Patient.h"
 #include "Doctor.h"
 #include "PatientQueue.h"
+#include "DoctorList.h"
+#include "HospitalSystem.h"
 using namespace std;
 
 #define int long long
@@ -23,6 +25,8 @@ void debug() { cout << "[DEBUG]" << nl; }
 
 signed main()
 {
+     HospitalSystem myHospital; // Now the computer knows what this is!
+    myHospital.run();
   
 
     return 0;

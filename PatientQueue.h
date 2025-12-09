@@ -2,7 +2,6 @@
 // "وَأَنْ لَيْسَ لِلْإِنسَانِ إِلَّا مَا سَعَىٰ"
 // Free Palestine
 
-
 #ifndef PATIENTQUEUE_H
 #define PATIENTQUEUE_H
 #include <bits/stdc++.h>
@@ -143,6 +142,69 @@ public:
         }
 
         cout << "This patient is not in this queue!" << nl;
+        return Patient();
+    }
+
+    // Add this inside class PatientQueue in PatientQueue.h
+
+    Patient removeById(int id)
+    {
+        if (isEmpty())
+        {
+            cout << "Queue is empty. Cannot remove patient." << nl;
+            return Patient(); // Return empty patient
+        }
+
+        // SCENARIO 1: The patient to remove is at the HEAD
+        if (head->patient.getId() == id)
+        {
+            QueueNode *temp = head;
+            Patient removedData = head->patient;
+
+            head = head->next; // Move head forward
+
+            // If the queue becomes empty, update tail to null
+            if (head == nullptr)
+            {
+                tail = nullptr;
+            }
+
+            delete temp;
+            patientCount--;
+            return removedData;
+        }
+
+        // SCENARIO 2: The patient is somewhere else (Middle or Tail)
+        QueueNode *prev = head;
+        QueueNode *curr = head->next;
+
+        while (curr != nullptr)
+        {
+            if (curr->patient.getId() == id)
+            {
+                Patient removedData = curr->patient;
+
+                // Link previous node to the next node (skipping current)
+                prev->next = curr->next;
+
+                // If we are removing the TAIL, update tail to point to prev
+                if (curr == tail)
+                {
+                    tail = prev;
+                }
+
+                delete curr;
+                patientCount--;
+                return removedData;
+            }
+
+            // Move pointers forward
+            prev = curr;
+            curr = curr->next;
+        }
+
+        // SCENARIO 3: Patient ID was not found
+        cout << "Patient with ID " << id << " not found in the queue." << nl;
         return Patient();
     }
 
