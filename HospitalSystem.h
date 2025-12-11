@@ -18,10 +18,8 @@ class HospitalSystem
 {
 private:
     map<CaseType, DoctorList *> doctorsByMajor;
-    PatientQueue patientQueue;
-    map<int, Person> validateId; // this to validate id to check if this id is found or not
-    map<int, Doctor> doctors;    // to store all doctors in one place and it map data structure to make it easy to erase and search without looping
-    map<int, Patient> patients;  // to store all doctors in one place and it map data structure to make it easy to erase and search without looping
+    PatientQueue waiting;        // this if there is no doctor of any major we will add patient herer
+    map<int, Person> validateId; // this map to validate id to check if this id is found or not
 
 public:
     HospitalSystem();
@@ -30,27 +28,27 @@ public:
     void run();
 
     // --- Patient Management ---
-    void registerPatient();
-    void deletePatient();
-    void searchPatientByID();
+    void registerPatient();   // done
+    void deletePatient();     // sanad
+    void searchPatientByID(); // moza
 
     // --- Doctor Management ---
-    void hireDoctor();
-    void fireDoctor();
-    void searchDoctorByID();
-    void searchDoctorByDepartment();
-    void showDoctorQueue();
+    void hireDoctor();               // under work
+    void fireDoctor();               // under work
+    void searchDoctorByID();         // under work
+    void searchDoctorByDepartment(); // under work
+    void showDoctorQueue();          // sanad
 
     // Main menu
-    void printMainMenu();
-    void patientManagement();
-    void doctorManagement();
-    void printExitScreen();
-    // void treatPatient();
-    // void patientsCount();
-    // void doctorsCount();
-    // void displayPatients();
-    // void displayDoctors();
+    void printMainMenu();     // done
+    void patientManagement(); // done
+    void doctorManagement();  // done
+    void printExitScreen();   // done
+    void treatPatient();      // under work // dequeue patient from each queue
+    void patientsCount();     // done // we will iterate on majors
+    void doctorsCount();      // done // we will iterate on majors and LinkedList
+    void displayPatients();   // done  // here we will display id , name, Major, Doctor
+    void displayDoctors();    // done  // here we will display id , name only
 };
 
 #endif

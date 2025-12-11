@@ -43,6 +43,11 @@ public:
         return patientCount;
     }
 
+    QueueNode *getHead()
+    {
+        return head;
+    }
+
     // Enqueue to add patient
     void enqueue(Patient patient)
     {
@@ -67,25 +72,21 @@ public:
             cout << "There are no patients available." << nl;
             return Patient();
         }
-        else
+
+        patientCount--;
+        if (head == tail)
         {
-            patientCount--;
-            if (head == tail)
-            {
-                Patient tempVal = head->patient;
-                delete head;
-                head = tail = nullptr;
-                return tempVal;
-            }
-            else
-            {
-                Patient tempVal = head->patient;
-                QueueNode *temp = head;
-                head = head->next;
-                delete temp;
-                return tempVal;
-            }
+            Patient tempVal = head->patient;
+            delete head;
+            head = tail = nullptr;
+            return tempVal;
         }
+
+        Patient tempVal = head->patient;
+        QueueNode *temp = head;
+        head = head->next;
+        delete temp;
+        return tempVal;
     }
 
     // peek to get current patinet which on the top

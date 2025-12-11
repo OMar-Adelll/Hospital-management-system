@@ -33,6 +33,11 @@ public:
         clear();
     }
 
+    ListNode *getHead()
+    {
+        return head;
+    }
+
     void addDoctor(const Doctor &doctor)
     {
         ListNode *newNode = new ListNode(doctor);
@@ -48,21 +53,20 @@ public:
         DoctorsCount++;
     }
 
-    PatientQueue *SearchById(int DoctorId)
+     ListNode *SearchById(int DoctorId)
     {
-        ListNode *Start = head;
+        ListNode *curr = head;
 
-        while (Start != nullptr)
+        while (curr != nullptr)
         {
-            if (Start->doctor.getId() == DoctorId)
+            if (curr->doctor.getId() == DoctorId)
             {
-                return &Start->Patients; // return POINTER to the queue
+                return curr; // return the whole doctor node
             }
-            Start = Start->next;
+            curr = curr->next;
         }
 
-        cout << "Doctor Id not found!\n";
-        return nullptr;
+        return nullptr; 
     }
 
     Doctor dequeue() // This function deletes a doctor.
@@ -105,9 +109,10 @@ public:
             ListNode *curr = head;
             while (curr != nullptr)
             {
-                cout << "Doctor ID" << curr->doctor.getId() << endl;
-                cout << "Doctor Name" << curr->doctor.getName() << endl;
-                cout << "==================================" << endl;
+                cout << "Doctor ID : " << curr->doctor.getId() << "\n";
+                cout << "Name      : " << curr->doctor.getName() << "\n";
+                cout << "Queue     : " << curr->Patients.getQueueCount() << " waiting\n";
+                cout << "------------------------------------------\n";
                 curr = curr->next;
             }
         }
@@ -118,7 +123,7 @@ public:
         return head == nullptr;
     }
 
-    int count() const
+    int getCount() const
     {
         return DoctorsCount;
     }
