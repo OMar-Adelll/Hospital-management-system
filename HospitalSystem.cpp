@@ -697,10 +697,10 @@ void HospitalSystem::printMainMenu() // welcome menu
     cout << "|   1) Patient Management                          |\n";
     cout << "|   2) Doctor Management                           |\n";
     cout << "|   3) Treat Patient                               |\n";
-    cout << "|   5) doctors Count                               |\n";
-    cout << "|   6) Patient Count                               |\n";
-    cout << "|   7) display All doctors                         |\n";
-    cout << "|   8) display All patients                        |\n";
+    cout << "|   4) doctors Count                               |\n";
+    cout << "|   5) Patient Count                               |\n";
+    cout << "|   6) display All doctors                         |\n";
+    cout << "|   7) display All patients                        |\n";
     cout << "|                                                  |\n";
     cout << "|   0) Exit                                        |\n";
     cout << "|                                                  |\n";
@@ -840,10 +840,10 @@ void HospitalSystem::run()
         case 3:
             treatPatient();
             break;
-        case 5:
+        case 4:
             doctorsCount();
             break;
-        case 6:
+        case 5:
             patientsCount();
             break;
 
