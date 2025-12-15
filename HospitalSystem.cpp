@@ -480,22 +480,24 @@ void HospitalSystem::showDoctorQueue()
                 {
                     QueueNode *Node = curr->Patients.getHead();
                     cout << "| "
-                         << left << setw(5) << "ID"
-                         << "| " << setw(20) << "Name"
-                         << "| " << setw(5) << "Age"
-                         << '\n';
-                    cout << "+----------------------------+";
+                        << left << setw(5) << "ID"
+                        << "| " << setw(20) << "Name"
+                        << "| " << setw(5) << "Age"
+                        << '\n';
+                    cout << "________________________________________________\n";
                     while (Node != nullptr)
                     {
                         cout << "| "
-                             << left << setw(5) << Node->patient.getId()
-                             << "| " << setw(20) << Node->patient.getName()
-                             << "| " << setw(5) << Node->patient.getAge()
-                             << '\n';
+                            << left << setw(5) << Node->patient.getId()
+                            << "| " << setw(20) << Node->patient.getName()
+                            << "| " << setw(5) << Node->patient.getAge()
+                            << '\n';
                         Node = Node->next;
                     }
                 }
+                return ;
             }
+            curr = curr->next ;
         }
     }
     cout << "+==================================================+\n";
