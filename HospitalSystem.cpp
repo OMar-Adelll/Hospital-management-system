@@ -692,7 +692,28 @@ void HospitalSystem::doctorsCount()
     cout << "+==================================================+\n";
 }
 
-void HospitalSystem::treatPatient() {} // Omar adel
+void HospitalSystem::treatPatients()
+{
+
+    for (auto &[maj, list] : doctorsByMajor)
+    {
+        ListNode *curDoc = list->getHead();
+        while (curDoc != nullptr)
+        {
+            if (curDoc->Patients.getQueueCount() > 0)
+            {
+                int patientId = curDoc->Patients.dequeue().getId();
+                validateId.erase(patientId);
+            }
+        }
+    }
+
+    cout << "\n";
+    cout << "+==================================================+\n";
+    cout << "|      The treatment process is successful.        |\n";
+    cout << "+==================================================+\n";
+
+} // Omar adel
 
 // ================= MAIN MENU & PATIENT MENU & DOCTOR MENU & closing =================
 
@@ -844,7 +865,7 @@ void HospitalSystem::run()
             doctorManagement();
             break;
         case 3:
-            treatPatient();
+            treatPatients();
             break;
         case 4:
             doctorsCount();
