@@ -80,7 +80,7 @@ HospitalSystem::HospitalSystem() // allocate memory (create list of doctors for 
 
 HospitalSystem::~HospitalSystem() // save memory leak
 {
-    
+
     for (auto const &[key, listPtr] : doctorsByMajor)
     {
         delete listPtr;
@@ -336,6 +336,10 @@ void HospitalSystem::fireDoctor() // fire a doctor with id (Omar Mohamed)
     {
         cout << "Invalid Id, Please Enter a Correct Doctor Id!\n";
         return;
+    }
+    else if (list->doctorPatientCount(id) != 0)
+    {
+        cout << "This Doctor Has a Patients, Can’t Be Fired Now!\n";
     }
     else
     {
@@ -852,7 +856,6 @@ void HospitalSystem::run()
         case 7:
             displayPatients();
             break;
-            
 
         case 0:
             printExitScreen();

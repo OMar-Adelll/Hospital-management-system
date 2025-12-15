@@ -56,7 +56,7 @@ public:
         tail = nullptr ;
     }
 
-    // Enqueue to add patient
+    // Enqueue to add patient(-MoRa-)
     void enqueue(Patient patient)
     {
         QueueNode *newPatient = new QueueNode(patient);
@@ -72,7 +72,7 @@ public:
         patientCount++;
     }
 
-    // Dequeue to delete patient
+    // Dequeue to delete patient(-MoRa-)
     Patient dequeue()
     {
         if (isEmpty())

@@ -131,6 +131,39 @@ public:
         }
     }
 
+    int doctorPatientCount(int DoctorId) // return the count of patients for a doctor that have this id (-MoRa-)
+    {
+        if (isEmpty())
+        {
+            cout << "Invalid Id, Please Enter a Correct Doctor Id!" << nl;
+            return 0;
+        }
+        else
+        {
+            if (SearchById(DoctorId) == nullptr)
+            {
+                cout << "Invalid Id, Please Enter a Correct Doctor Id!\n";
+                return 0;
+            }
+            else
+            {
+                if (head->doctor.getId() == DoctorId)
+                {
+                    return head->Patients.getQueueCount();
+                }
+                else
+                {
+                    ListNode *curr = head;
+                    while (curr->doctor.getId() != DoctorId)
+                    {
+                        curr = curr->next;
+                    }
+                    return curr->Patients.getQueueCount();
+                }
+            }
+        }
+    }
+
     void display() // This function display doctors queue
     {
         if (isEmpty())
